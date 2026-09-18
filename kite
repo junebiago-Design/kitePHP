@@ -9,7 +9,7 @@ if ($argc < 2) {
     echo "  make:apps {projectName}    		 Initialize project template\n";
     echo "  make:backup [options]      		 Create/manage project backups\n";
     echo "  show:info                  		 Show current project info\n";
-    echo "  kite:sprint                		 Start Development Server\n";
+    echo "  sprint                		 Start Development Server\n";
     echo "\n";
     exit(0);
 }
