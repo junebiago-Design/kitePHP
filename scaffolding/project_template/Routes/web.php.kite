@@ -1,0 +1,11 @@
+<?php
+
+use {{ namespace }}\Controllers\HomeController;
+
+$routes = [
+    'GET /' => [HomeController::class, 'index'],
+];
+
+
+
+return $routes;

@@ -1,0 +1,133 @@
+#!/usr/bin/env php
+<?php
+
+if ($argc < 2) {
+    echo "  KitePHP CLI Development Tools\n";
+    echo "  Usage: php console <command> [arguments]\n\n";
+    echo "  Available commands:\n\n";
+    echo "  make:controller {name}    		 Generate a new controller class\n";
+    echo "  make:apps {projectName}    		 Initialize project template\n";
+    echo "  make:backup [options]      		 Create/manage project backups\n";
+    echo "  show:info                  		 Show current project info\n";
+    echo "  kite:sprint                		 Start Development Server\n";
+    echo "\n";
+    exit(0);
+}
+
+$command = $argv[1];
+
+switch ($command) {
+
+    /*
+    |--------------------------------------------------------------------------
+    | Make Controller
+    |--------------------------------------------------------------------------
+    */
+    case 'make:controller':
+
+        if ($argc < 3) {
+            echo "Error: Missing controller name.\n";
+            echo "Usage: php console make:controller {name}\n";
+            exit(1);
+        }
+
+        array_shift($argv); // Remove console
+        array_shift($argv); // Remove make:controller
+
+        array_unshift($argv, 'make_controller.php');
+
+        $argc = count($argv);
+
+        require __DIR__ . '/cmd/make_controller.php';
+        break;
+
+
+    /*
+    |--------------------------------------------------------------------------
+    | Make Apps
+    |--------------------------------------------------------------------------
+    */
+    case 'make:apps':
+
+        if ($argc < 3) {
+            echo "Error: Missing project name.\n";
+            echo "Usage: php console make:apps {projectName}\n";
+            echo "Example: php console make:apps my-blog\n";
+            exit(1);
+        }
+
+        array_shift($argv); // Remove console
+        array_shift($argv); // Remove make:apps
+
+        array_unshift($argv, 'make_apps.php');
+
+        $argc = count($argv);
+
+        require __DIR__ . '/cmd/make_apps.php';
+        break;
+
+
+    /*
+    |--------------------------------------------------------------------------
+    | Show Info
+    |--------------------------------------------------------------------------
+    */
+    case 'show:info':
+
+        require __DIR__ . '/cmd/make_info.php';
+        break;
+
+
+    /*
+    |--------------------------------------------------------------------------
+    | Make Backup
+    |--------------------------------------------------------------------------
+    */
+    case 'make:backup':
+
+        // Pass all arguments through
+        // Examples:
+        // php console make:backup
+        // php console make:backup --list
+        // php console make:backup --prune 2
+        // php console make:backup --help
+
+        require __DIR__ . '/cmd/backup.php';
+        break;
+
+
+    /*
+    |--------------------------------------------------------------------------
+    | Start Development Server
+    |--------------------------------------------------------------------------
+    */
+    case 'sprint':
+
+        $script = __DIR__ . '/cmd/serve.php';
+
+        if (!file_exists($script)) {
+            echo "Error: Development server script not found.\n";
+            echo "Expected file: {$script}\n";
+            exit(1);
+        }
+
+        passthru(
+            PHP_BINARY . ' ' . escapeshellarg($script),
+            $exitCode
+        );
+
+        exit($exitCode);
+
+
+    /*
+    |--------------------------------------------------------------------------
+    | Unknown Command
+    |--------------------------------------------------------------------------
+    */
+    default:
+
+        echo "Error: Unknown command '{$command}'\n";
+        echo "Run 'php console' to see available commands.\n";
+        exit(1);
+}
+

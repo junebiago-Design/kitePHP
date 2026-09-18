@@ -1,0 +1,17 @@
+<?php
+
+namespace Apps\Controllers;
+
+use Core\Controller;
+
+class {{CLASS_NAME}} extends Controller
+{
+    public function index(): string
+    {
+        return $this->view('{{VIEW_NAME}}', [
+            'projectName' => '{{PROJECT_NAME}}',
+            'namespace'   => '{{NAMESPACE}}',
+            'viewName'    => '{{VIEW_NAME}}',
+        ]);
+    }
+}

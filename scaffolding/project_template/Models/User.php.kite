@@ -1,0 +1,19 @@
+<?php
+
+namespace {{ namespace }}\Models;
+
+class User
+{
+    public int $id = 0;
+    public string $name = '';
+    public string $email = '';
+
+    public function __construct(array $attributes = [])
+    {
+        foreach ($attributes as $key => $value) {
+            if (property_exists($this, $key)) {
+                $this->$key = $value;
+            }
+        }
+    }
+}

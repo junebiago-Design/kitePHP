@@ -1,0 +1,68 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title><?= htmlspecialchars($projectName) ?></title>
+    <!-- Renders <link> tags for all CSS files -->
+    <?= $this->assets('css'); ?>
+</head>
+
+<body class="d-flex flex-column min-vh-100">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-4">
+    <div class="container">
+        <a class="navbar-brand" href="/"><?= htmlspecialchars($projectName) ?></a>
+    </div>
+</nav>
+        <div class="container mt-4 p-5 bg-dark text-light rounded">
+        <h1>Welcome <?= htmlspecialchars($projectName) ?></h1>
+        <subtitle>Congratulations! Your new KitePHP project is now ready to use a lightweight PHP framework for shared hosting</subtitle>     
+        <p><b>Project Name:</b> <?= htmlspecialchars($projectName) ?> <b>Namespace:</b> <?= htmlspecialchars($namespace) ?> </p> 
+        <button type="button" class="btn btn-primary" onclick="window.open('https://tuss.rf.gd', '_blank', 'noopener,noreferrer');">
+        Read More
+        </button>
+
+     </div>   
+</div>
+<<br><br>
+<div class="container">
+ 
+   <h2>What Is KitePHP?</h2>
+   <p>KitePHP is a tiny, self-contained PHP framework designed to:</p>
+   <ul>
+    <li>Run on shared hosting with no shell access (like InfinityFree).</li>
+    <li>Use no Composer on the server (a hand-rolled autoloader is bundled).</li>
+    <li>Keep one app per project — no multi-tenant routing.</li>
+    <li>Favor convention over configuration — folder names, namespace names, and file names must match exactly.</li>
+   </ul>
+ <p>It provides just enough structure to build small MVC apps:</p>
+ <ul>
+    <li>A front controller (index.php) that handles every request.</li>
+    <li>A router that maps METHOD /path to a controller method.</li>
+    <li>A base controller that renders views from apps/Views/.</li>
+    <li>A template stubs system so php console make:apps can scaffold a fresh app.</li>   
+    </ul>
+     <p>KitePHP is intentionally small. It's meant to be read, modified, and understood — not to compete with Laravel or Symfony.</p>
+</div>
+<br><br>
+
+    <!-- Footer: mt-auto pushes it to the bottom -->
+    <footer class="mt-auto bg-dark text-light rounded text-center" >
+        <div class="container py-4">
+            <p class="mb-1">&copy; 2026 KitePHP. All rights reserved.</p>
+            <ul class="list-inline mb-0" text-light rounded>
+      <li class="list-inline-item"><a href="#" class="text-secondary text-decoration-none">Privacy Policy</a></li>
+      <li class="list-inline-item">&middot;</li>
+      <li class="list-inline-item"><a href="#" class="text-secondary text-decoration-none">Terms of Service</a></li>
+      <li class="list-inline-item">&middot;</li>
+      <li class="list-inline-item"><a href="#" class="text-secondary text-decoration-none">Contact</a></li>
+    </ul>
+          
+        </div>
+    </footer>
+   
+    <!-- Renders <script> tags for all JS files -->
+    <?= $this->assets('js'); ?>
+</body>
+</html>
